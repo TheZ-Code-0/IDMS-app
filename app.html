@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="dark" />
-<title>IDMS · Konsol Marketing Local-First</title>
-<meta name="description" content="Dashboard marketing yang memproses data sepenuhnya di browser Anda — tak satu byte pun dikirim ke server." />
+<title>Vaultics · Local-First Marketing Console</title>
+<meta name="description" content="A marketing dashboard that processes your data entirely in your browser — not a single byte is sent to any server." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,7 +13,7 @@
 
 <style>
 /* ============================================================
-   IDMS — Fase 0 MVP
+   Vaultics — Fase 0 MVP
    Bahasa visual: Obsidian + Permata (lihat Modul 6)
    - base gelap, satu aksen dominan (jade), gold=juara, coral=negatif
    - gerak bertujuan, mobile-first, state data jujur
@@ -194,6 +194,52 @@ button{font-family:inherit}
 .empty-state svg{width:34px;height:34px;color:var(--ink-lo);margin-bottom:14px}
 .empty-state b{color:var(--ink);font-size:15px;display:block;margin-bottom:6px;font-family:var(--font-display);font-weight:500}
 .empty-state p{margin:0;font-size:13.5px;max-width:42ch;line-height:1.5}
+/* ---- PRO FASE 1: reports / track-over-time / print ---- */
+.toolbar-actions{flex-wrap:wrap}
+.print-head{display:none}
+.track-card{background:linear-gradient(180deg,var(--bg-2),var(--bg-1));border:1px solid var(--line-2);border-radius:var(--r-md);padding:16px 18px;margin-bottom:18px}
+.track-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.track-head h4{margin:0;font-family:var(--font-display);font-weight:500;font-size:16px;color:var(--ink-hi);display:flex;align-items:center;gap:8px}
+.track-head h4 svg{width:17px;height:17px;color:var(--jade)}
+.track-head .cnt{font-size:12px;color:var(--ink-mid)}
+.track-grid{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+@media(max-width:560px){.track-grid{grid-template-columns:1fr}}
+.track-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.track-tbl th{text-align:right;color:var(--ink-mid);font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;font-weight:600;padding:0 0 8px 14px}
+.track-tbl th:first-child{text-align:left}
+.track-tbl td{padding:7px 0 7px 14px;text-align:right;font-family:var(--font-mono);color:var(--ink-hi);border-top:1px solid var(--line)}
+.track-tbl td:first-child{text-align:left;font-family:var(--font-body);color:var(--ink)}
+.track-tbl .up{color:var(--jade)}
+.track-tbl .down{color:var(--coral)}
+.spark{width:150px;height:54px;flex:none}
+.track-hint{font-size:12.5px;color:var(--ink-mid);background:var(--bg-2);border:1px dashed var(--line-2);border-radius:10px;padding:11px 13px;line-height:1.5}
+.reports-drawer{position:fixed;inset:0;z-index:60;display:none}
+.reports-drawer.open{display:block}
+.rep-back{position:absolute;inset:0;background:rgba(3,4,7,.6);backdrop-filter:blur(3px)}
+.rep-panel{position:absolute;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--bg-1);border-left:1px solid var(--line-2);box-shadow:-30px 0 60px -20px rgba(0,0,0,.6);padding:22px;overflow-y:auto;animation:slideIn .28s ease}
+@keyframes slideIn{from{transform:translateX(20px);opacity:.5}to{transform:none;opacity:1}}
+.rep-panel h3{margin:0 0 4px;font-family:var(--font-display);font-weight:500;font-size:19px;color:var(--ink-hi)}
+.rep-panel .rsub{color:var(--ink-mid);font-size:13px;margin:0 0 18px;line-height:1.5}
+.rep-x{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--ink-mid);cursor:pointer;padding:6px;line-height:0}
+.rep-x:hover{color:var(--ink-hi)}.rep-x svg{width:20px;height:20px}
+.rep-item{border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:10px;background:var(--bg-2)}
+.rep-item .nm{font-weight:600;color:var(--ink-hi);font-size:14.5px;margin-bottom:3px}
+.rep-item .meta{font-size:12px;color:var(--ink-mid);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:11px}
+.rep-item .meta b{color:var(--jade);font-family:var(--font-mono);font-weight:600}
+.rep-item .acts{display:flex;gap:8px}
+.rep-item .acts .btn{padding:7px 13px;font-size:12.5px}
+.rep-empty{text-align:center;color:var(--ink-mid);font-size:13.5px;padding:30px 14px;border:1px dashed var(--line-2);border-radius:12px;line-height:1.6}
+@media print{
+  :root{--bg-0:#fff;--bg-1:#fff;--bg-2:#f6f6f8;--bg-3:#eef0f4;--line:#e3e3e9;--line-2:#d2d2da;--ink-hi:#0e1116;--ink:#2b3039;--ink-mid:#5c6373;--ink-lo:#8a90a0}
+  body{background:#fff!important}
+  .topbar,#dashTools,#onboard,#manualPanel,.reports-drawer,.empty-state{display:none!important}
+  .wrap{max-width:100%;padding:0 4px}
+  .print-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:2px solid var(--jade-2);padding-bottom:12px;margin-bottom:20px}
+  .print-head .pb{display:flex;align-items:center;gap:10px}
+  .print-head .pb b{font-family:var(--font-display);font-size:20px;color:#0e1116}
+  .print-head .pmeta{font-size:12px;color:#5c6373;text-align:right;line-height:1.5}
+  .panel,.track-card{break-inside:avoid;box-shadow:none!important}
+}
 
 details.fmt{margin-top:30px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--bg-1);overflow:hidden}
 details.fmt summary{cursor:pointer;list-style:none;padding:15px 18px;color:var(--ink);font-weight:600;font-size:14px;display:flex;align-items:center;gap:9px}
@@ -388,53 +434,65 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
 
   <!-- ============ TOP BAR ============ -->
   <header class="topbar">
-    <a class="brand" href="index.html" aria-label="Kembali ke beranda" style="text-decoration:none;color:inherit;cursor:pointer">
+    <a class="brand" href="index.html" aria-label="Back to home" style="text-decoration:none;color:inherit;cursor:pointer">
       <div class="gem" aria-hidden="true"></div>
       <div>
-        <h1>IDMS</h1>
-        <div class="sub">Konsol Local-First</div>
+        <h1>Vaultics</h1>
+        <div class="sub">Local-First Console</div>
       </div>
     </a>
-    <span class="pill lock" title="Klaim yang bisa dibuktikan">
+    <span class="pill lock" title="A verifiable claim">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-      Diproses di browser Anda
+      Processed in your browser
     </span>
     <span class="pill src" id="srcPill" style="display:none"><span class="dot"></span><span id="srcText">—</span></span>
     <div class="toolbar-actions" id="dashTools" style="display:none">
+      <button class="btn jade" id="btnSaveReport">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+        Save
+      </button>
+      <button class="btn" id="btnReports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        Reports
+      </button>
+      <button class="btn" id="btnPDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h9l3 3v4M6 18H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+        PDF
+      </button>
       <button class="btn" id="btnUpload">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 19h14"/></svg>
-        Ganti data
+        Change data
       </button>
       <button class="btn ghost" id="btnClear">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M6 7l1 13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-13"/></svg>
-        Hapus
+        Clear
       </button>
     </div>
   </header>
 
   <!-- ============ ONBOARDING ============ -->
   <section id="onboard">
-    <p class="eyebrow reveal" style="--d:40ms">Fase 0 · MVP</p>
-    <h2 class="reveal" style="--d:120ms">Data marketing Anda,<br><em>tetap milik Anda.</em></h2>
-    <p class="lede reveal" style="--d:220ms">Unggah ekspor kampanye Anda dan lihat funnel, tren, serta ROAS per kanal dalam hitungan detik. Semua perhitungan terjadi <b style="color:var(--ink-hi)">di dalam browser ini</b> — tak satu byte pun dikirim ke server mana pun.</p>
+    <p class="eyebrow reveal" style="--d:40ms">Phase 0 · MVP</p>
+    <h2 class="reveal" style="--d:120ms">Your marketing data,<br><em>yours alone.</em></h2>
+    <p class="lede reveal" style="--d:220ms">Upload your campaign exports and see funnels, trends, and channel ROAS in seconds. Every calculation happens <b style="color:var(--ink-hi)">inside this browser</b> — not a single byte is sent to any server.</p>
 
     <div class="reveal" style="--d:320ms">
-      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Unggah file CSV">
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload CSV file">
         <svg class="di" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V5M7.5 9.5 12 5l4.5 4.5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
-        <b>Lepas file CSV di sini, atau klik untuk memilih</b>
-        <span>Ekspor dari Google Ads, Meta, GA4, Shopee — atau sheet apa pun</span>
+        <b>Drop a CSV here, or click to choose</b>
+        <span>Export from Google Ads, Meta, GA4, Shopee — or any sheet</span>
         <input type="file" id="fileInput" accept=".csv,text/csv" hidden />
       </div>
 
-      <div class="or">atau</div>
+      <div class="or">or</div>
       <div class="cta-row">
         <button class="btn jade" id="btnSample">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg>
-          Coba dengan data contoh
+          Try with sample data
         </button>
         <button class="btn alt" id="btnManual">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h18M3 14h18M9 6v12"/></svg>
-          Isi manual (tanpa CSV)
+          Enter manually (no CSV)
         </button>
       </div>
       <div id="manualPanel" style="display:none"></div>
@@ -442,22 +500,22 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
       <details class="fmt">
         <summary>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
-          Format kolom yang diharapkan
+          Expected column format
           <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
         </summary>
         <div class="fmt-body">
-          <p>CSV dengan baris harian per kanal. Nama kolom fleksibel (ID atau EN) — kolom yang dikenali:</p>
+          <p>A CSV with daily rows per channel. Column names are flexible (EN or ID) — recognized columns:</p>
           <div class="fmt-cols">
-            <span>tanggal<small>date</small></span>
-            <span>kanal<small>channel</small></span>
-            <span>biaya<small>cost</small></span>
-            <span>impresi<small>impressions</small></span>
-            <span>klik<small>clicks</small></span>
-            <span>lead<small>leads</small></span>
-            <span>konversi<small>conversions</small></span>
+            <span>date<small>tanggal</small></span>
+            <span>channel<small>kanal</small></span>
+            <span>cost<small>biaya</small></span>
+            <span>impressions<small>impresi</small></span>
+            <span>clicks<small>klik</small></span>
+            <span>leads<small>lead</small></span>
+            <span>conversions<small>konversi</small></span>
             <span>pendapatan<small>revenue</small></span>
           </div>
-          <p>Contoh baris: <code>2026-05-01, Google Ads, 175000, 5120, 248, 71, 9, 2520000</code></p>
+          <p>Example row: <code>2026-05-01, Google Ads, 175000, 5120, 248, 71, 9, 2520000</code></p>
         </div>
       </details>
     </div>
@@ -465,18 +523,23 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
 
   <!-- ============ DASHBOARD ============ -->
   <main id="dash" aria-live="polite">
+    <div class="print-head">
+      <div class="pb"><div class="gem" aria-hidden="true"></div><b>Vaultics</b></div>
+      <div class="pmeta"><span id="printTitle">Marketing report</span><br><span id="printDate"></span></div>
+    </div>
+    <div id="trackCard" class="track-card" style="display:none"></div>
 
     <!-- KPI -->
     <div class="section-head">
-      <h3>Ikhtisar</h3>
-      <span class="why">Kesehatan akuisisi sekilas. Delta dibandingkan paruh periode sebelumnya.</span>
+      <h3>Overview</h3>
+      <span class="why">Acquisition health at a glance. Deltas compare against the previous half-period.</span>
     </div>
     <div class="kpis" id="kpis"></div>
 
     <!-- Funnel 3D -->
     <div class="section-head">
-      <h3>Funnel Akuisisi</h3>
-      <span class="why">Tahap mana yang paling bocor relatif terhadap benchmark → fokus optimasi di sini dulu.</span>
+      <h3>Acquisition Funnel</h3>
+      <span class="why">Which stage leaks most relative to benchmarks → optimize here first.</span>
     </div>
     <div class="panel reveal">
       <div class="panel-pad">
@@ -486,7 +549,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
             <div class="funnel-3d" id="funnel3d"></div>
             <div class="hint">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11V6a2 2 0 0 1 4 0v5"/><path d="M13 7a2 2 0 0 1 4 0v6a6 6 0 0 1-6 6h-1.5a4 4 0 0 1-3.2-1.6L4 14"/></svg>
-              Tarik untuk memutar
+              Drag to rotate
             </div>
           </div>
           <div class="stages" id="stages"></div>
@@ -494,47 +557,47 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
         <div class="insight" id="insight"></div>
         <div class="empty-state" id="funnelEmpty" style="display:none">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>
-          <b>Funnel butuh data tahapan</b>
-          <p>Isi kolom impresi → klik → lead → konversi (lewat "Isi manual" atau unggah CSV) untuk melihat tahap mana yang paling bocor.</p>
+          <b>The funnel needs stage data</b>
+          <p>Fill in impressions → clicks → leads → conversions (via "Enter manually" or a CSV upload) to see which stage leaks most.</p>
         </div>
       </div>
     </div>
 
     <!-- Charts -->
     <div class="section-head">
-      <h3>Tren &amp; Kanal</h3>
-      <span class="why">Apakah pendapatan tumbuh lebih cepat dari biaya, dan kanal mana yang layak di-scale.</span>
+      <h3>Trends &amp; Channels</h3>
+      <span class="why">Whether revenue is outgrowing cost, and which channels are worth scaling.</span>
     </div>
     <div class="chart-grid">
       <div class="panel">
         <div class="panel-pad">
-          <div style="font-size:13px;color:var(--ink-mid);margin-bottom:4px;letter-spacing:.4px">PENDAPATAN vs BIAYA</div>
+          <div style="font-size:13px;color:var(--ink-mid);margin-bottom:4px;letter-spacing:.4px">REVENUE vs COST</div>
           <div class="chart-wrap" id="trendWrap">
-            <svg class="chart" id="trendChart" viewBox="0 0 600 280" preserveAspectRatio="none" role="img" aria-label="Grafik tren pendapatan dan biaya"></svg>
+            <svg class="chart" id="trendChart" viewBox="0 0 600 280" preserveAspectRatio="none" role="img" aria-label="Revenue and cost trend chart"></svg>
             <div class="tooltip" id="trendTip"></div>
           </div>
           <div class="legend" id="trendLegend">
-            <span><i style="background:var(--jade)"></i>Pendapatan</span>
-            <span><i style="background:var(--gold)"></i>Biaya</span>
+            <span><i style="background:var(--jade)"></i>Revenue</span>
+            <span><i style="background:var(--gold)"></i>Cost</span>
           </div>
           <div class="empty-state" id="trendEmpty" style="display:none">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg>
-            <b>Tren butuh data harian</b>
-            <p>Unggah CSV berisi kolom tanggal untuk melihat pendapatan vs biaya sepanjang waktu.</p>
+            <b>Trends need daily data</b>
+            <p>Upload a CSV with a date column to see revenue vs cost over time.</p>
           </div>
         </div>
       </div>
       <div class="panel">
         <div class="panel-pad">
-          <div style="font-size:13px;color:var(--ink-mid);margin-bottom:4px;letter-spacing:.4px">ROAS PER KANAL</div>
+          <div style="font-size:13px;color:var(--ink-mid);margin-bottom:4px;letter-spacing:.4px">ROAS BY CHANNEL</div>
           <div class="chart-wrap" id="roasWrap">
-            <svg class="chart" id="roasChart" viewBox="0 0 460 300" role="img" aria-label="Grafik ROAS per kanal"></svg>
+            <svg class="chart" id="roasChart" viewBox="0 0 460 300" role="img" aria-label="ROAS by channel chart"></svg>
             <div class="tooltip" id="roasTip"></div>
           </div>
           <div class="legend">
-            <span><i style="background:var(--gold)"></i>Juara</span>
+            <span><i style="background:var(--gold)"></i>Champion</span>
             <span><i style="background:var(--jade)"></i>Profit (≥1×)</span>
-            <span><i style="background:var(--coral)"></i>Rugi (&lt;1×)</span>
+            <span><i style="background:var(--coral)"></i>Loss (&lt;1×)</span>
           </div>
         </div>
       </div>
@@ -546,24 +609,33 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
       </div>
       <div class="pc">
-        <h4>Privasi yang bisa dibuktikan</h4>
-        <p>Data analitik yang Anda unggah diproses sepenuhnya di perangkat ini dan disimpan lokal di browser Anda — tak pernah dikirim ke server mana pun. Buka tab Network di DevTools dan buktikan sendiri: tidak ada permintaan keluar saat memuat data.</p>
+        <h4>Privacy you can verify</h4>
+        <p>The analytics data you upload is processed entirely on this device and stored locally in your browser — never sent to any server. Open the Network tab in DevTools and verify it yourself: no outbound requests while loading data.</p>
         <div class="meta" id="privacyMeta">
-          <span>Penyimpanan: <b id="storeMode">IndexedDB (lokal)</b></span>
-          <span>Server: <b>0 byte</b></span>
-          <span>Backend: <b>tidak ada</b></span>
+          <span>Storage: <b id="storeMode">IndexedDB (lokal)</b></span>
+          <span>Server: <b>0 bytes</b></span>
+          <span>Backend: <b>none</b></span>
         </div>
       </div>
     </div>
 
     <div class="foot">
-      <span class="note">Prototipe Fase 0 · angka tergantung data yang Anda unggah</span><br>
-      Dibangun mengikuti Modul 6 (Obsidian + Permata). Harga tool & ketentuan hosting perlu diverifikasi terkini saat implementasi.
+      <span class="note">Phase 0 prototype · figures depend on the data you provide</span><br>
+      Tool pricing and hosting terms should be verified at implementation.
     </div>
 
   </main>
 </div>
 
+<div class="reports-drawer" id="reportsDrawer" aria-hidden="true">
+  <div class="rep-back" id="reportsBackdrop"></div>
+  <div class="rep-panel" role="dialog" aria-label="Saved reports">
+    <button class="rep-x" id="reportsClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <h3>Saved reports</h3>
+    <p class="rsub">Stored in this browser only — never on our servers. Open a report to track how its numbers move over time.</p>
+    <div id="reportsList"></div>
+  </div>
+</div>
 <script>
 "use strict";
 (function(){
@@ -635,7 +707,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
   }
 
   function buildRows(matrix){
-    if(matrix.length<2) throw new Error('File kosong atau tanpa baris data.');
+    if(matrix.length<2) throw new Error('File is empty or has no data rows.');
     const header=matrix[0].map(norm);
     const idx={};
     for(const key in FIELD_ALIASES){
@@ -649,7 +721,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
       const get=(k)=> idx[k]>-1 ? row[idx[k]] : '';
       out.push({
         tanggal: String(get('tanggal')||'').trim() || ('Baris '+r),
-        kanal: String(get('kanal')||'Tanpa kanal').trim() || 'Tanpa kanal',
+        kanal: String(get('kanal')||'Unnamed channel').trim() || 'Unnamed channel',
         biaya: num(get('biaya')),
         impresi: num(get('impresi')),
         klik: num(get('klik')),
@@ -662,7 +734,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
   }
 
   /* =========================================================
-     4) DATA CONTOH (generator deterministik — bercerita)
+     4) SAMPLE DATA (deterministic generator — tells a story)
      ========================================================= */
   function sampleData(){
     let seed=20260601;
@@ -671,7 +743,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
     // profil kanal: SEO = juara, Shopee = rugi (<1×); Lead→Konversi sengaja lemah (titik bocor)
     // CPC dikalibrasi agar ROAS blended realistis (~0.8×–6×), bukan angka fantastis
     const ch=[
-      {n:'SEO Organik', imp:7200, ctr:.061, kl:.34, lk:.15, cpc:2700, aov:295000, costFix:25000},
+      {n:'Organic SEO', imp:7200, ctr:.061, kl:.34, lk:.15, cpc:2700, aov:295000, costFix:25000},
       {n:'WhatsApp',    imp:1300, ctr:.092, kl:.46, lk:.21, cpc:5100, aov:240000, costFix:0},
       {n:'Google Ads',  imp:5200, ctr:.052, kl:.30, lk:.12, cpc:3700, aov:278000, costFix:0},
       {n:'Meta',        imp:9300, ctr:.032, kl:.22, lk:.10, cpc:2500, aov:225000, costFix:0},
@@ -732,17 +804,17 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
 
   function funnelStages(t){
     return [
-      {key:'impresi', name:'Impresi',  val:t.impr},
-      {key:'klik',    name:'Klik',     val:t.klik},
-      {key:'lead',    name:'Lead',     val:t.lead},
-      {key:'konversi',name:'Konversi', val:t.konv}
+      {key:'impresi', name:'Impressions',  val:t.impr},
+      {key:'klik',    name:'Clicks',     val:t.klik},
+      {key:'lead',    name:'Leads',     val:t.lead},
+      {key:'konversi',name:'Conversions', val:t.konv}
     ];
   }
   // benchmark sehat (illustratif, perlu konfirmasi) untuk tiap langkah
   const STEP_BENCH = {
-    'Impresi→Klik':   {lo:.02, hi:.05, why:'CTR rendah — uji kreatif & targeting iklan.'},
-    'Klik→Lead':      {lo:.20, hi:.40, why:'Landing page / form bocor — uji LP, kecepatan, dan form.'},
-    'Lead→Konversi':  {lo:.20, hi:.40, why:'Handoff sales / checkout bocor — audit transaksi gagal & SLA sales.'}
+    'Impressions→Clicks':   {lo:.02, hi:.05, why:'Low CTR — test ad creative & targeting.'},
+    'Clicks→Leads':      {lo:.20, hi:.40, why:'Landing page / form leak — test the LP, page speed, and form.'},
+    'Leads→Conversions':  {lo:.20, hi:.40, why:'Sales handoff / checkout leak — audit failed transactions & sales SLA.'}
   };
   function detectLeak(stages){
     let worst=null;
@@ -783,27 +855,27 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
   }
 
   /* =========================================================
-     6) FORMAT (Indonesia)
+     6) FORMAT (numbers)
      ========================================================= */
   function fmtRp(v){
     if(v==null||!isFinite(v)) return '—';
     const a=Math.abs(v);
-    if(a>=1e9) return 'Rp '+(v/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+' M';
-    if(a>=1e6) return 'Rp '+(v/1e6).toLocaleString('id-ID',{maximumFractionDigits:1})+' jt';
-    if(a>=1e3) return 'Rp '+(v/1e3).toLocaleString('id-ID',{maximumFractionDigits:0})+' rb';
-    return 'Rp '+Math.round(v).toLocaleString('id-ID');
+    if(a>=1e9) return ''+(v/1e9).toLocaleString('en-US',{maximumFractionDigits:1})+' B';
+    if(a>=1e6) return ''+(v/1e6).toLocaleString('en-US',{maximumFractionDigits:1})+' M';
+    if(a>=1e3) return ''+(v/1e3).toLocaleString('en-US',{maximumFractionDigits:0})+' K';
+    return ''+Math.round(v).toLocaleString('en-US');
   }
-  function fmtRpFull(v){ return v==null?'—':'Rp '+Math.round(v).toLocaleString('id-ID'); }
-  function fmtInt(v){ return v==null?'—':Math.round(v).toLocaleString('id-ID'); }
+  function fmtRpFull(v){ return v==null?'—':''+Math.round(v).toLocaleString('en-US'); }
+  function fmtInt(v){ return v==null?'—':Math.round(v).toLocaleString('en-US'); }
   function fmtIntShort(v){
     if(v==null) return '—'; const a=Math.abs(v);
-    if(a>=1e6) return (v/1e6).toLocaleString('id-ID',{maximumFractionDigits:1})+'jt';
-    if(a>=1e3) return (v/1e3).toLocaleString('id-ID',{maximumFractionDigits:1})+'rb';
-    return Math.round(v).toLocaleString('id-ID');
+    if(a>=1e6) return (v/1e6).toLocaleString('en-US',{maximumFractionDigits:1})+'M';
+    if(a>=1e3) return (v/1e3).toLocaleString('en-US',{maximumFractionDigits:1})+'K';
+    return Math.round(v).toLocaleString('en-US');
   }
-  function fmtX(v){ return v==null?'—':v.toLocaleString('id-ID',{minimumFractionDigits:2,maximumFractionDigits:2})+'×'; }
-  function fmtPct(v){ return v==null?'—':(v*100).toLocaleString('id-ID',{maximumFractionDigits:1})+'%'; }
-  function fmtDelta(v){ return v==null?'':(v>=0?'+':'')+(v*100).toLocaleString('id-ID',{maximumFractionDigits:1})+'%'; }
+  function fmtX(v){ return v==null?'—':v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+'×'; }
+  function fmtPct(v){ return v==null?'—':(v*100).toLocaleString('en-US',{maximumFractionDigits:1})+'%'; }
+  function fmtDelta(v){ return v==null?'':(v>=0?'+':'')+(v*100).toLocaleString('en-US',{maximumFractionDigits:1})+'%'; }
   function shortDate(s){ const m=/^\d{4}-(\d{2})-(\d{2})/.exec(s); return m? (parseInt(m[2])+'/'+parseInt(m[1])) : s; }
 
   /* =========================================================
@@ -834,17 +906,17 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
     const up=v>=0, good = goodIsUp ? up : !up;
     const cls = Math.abs(v)<0.0005 ? 'flat' : (good?'up':'down');
     const arr = up?'▲':'▼';
-    return '<span class="delta '+cls+'"><span class="arr">'+arr+'</span>'+fmtDelta(v)+'<small>vs sblm</small></span>';
+    return '<span class="delta '+cls+'"><span class="arr">'+arr+'</span>'+fmtDelta(v)+'<small>vs prev</small></span>';
   }
   function renderKPIs(t, d){
     d = d || {};
     const cards=[
-      {hero:true, label:'ROAS', crown:true, raw:t.roas, fmt:v=>({txt:v==null?'—':v.toLocaleString('id-ID',{minimumFractionDigits:2,maximumFractionDigits:2}),unit:v==null?'':'×'}), delta:deltaHTML(d.roas,true)},
-      {label:'Pendapatan', raw:t.pend, fmt:v=>rpUnit(v), delta:deltaHTML(d.pend,true)},
-      {label:'Biaya', raw:t.biaya, fmt:v=>rpUnit(v), delta:deltaHTML(d.biaya,false)},
+      {hero:true, label:'ROAS', crown:true, raw:t.roas, fmt:v=>({txt:v==null?'—':v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}),unit:v==null?'':'×'}), delta:deltaHTML(d.roas,true)},
+      {label:'Revenue', raw:t.pend, fmt:v=>rpUnit(v), delta:deltaHTML(d.pend,true)},
+      {label:'Cost', raw:t.biaya, fmt:v=>rpUnit(v), delta:deltaHTML(d.biaya,false)},
       {label:'CAC', raw:t.cac, fmt:v=>rpUnit(v), delta:deltaHTML(d.cac,false)},
-      {label:'Konversi', raw:t.konv, fmt:v=>({txt:fmtIntShort(v),unit:''}), delta:deltaHTML(d.konv,true)},
-      {label:'Conv. Rate', raw:t.cvr, fmt:v=>({txt:v==null?'—':(v*100).toLocaleString('id-ID',{maximumFractionDigits:1}),unit:v==null?'':'%'}), delta:deltaHTML(d.cvr,true)}
+      {label:'Conversions', raw:t.konv, fmt:v=>({txt:fmtIntShort(v),unit:''}), delta:deltaHTML(d.konv,true)},
+      {label:'Conv. Rate', raw:t.cvr, fmt:v=>({txt:v==null?'—':(v*100).toLocaleString('en-US',{maximumFractionDigits:1}),unit:v==null?'':'%'}), delta:deltaHTML(d.cvr,true)}
     ];
     const box=document.getElementById('kpis'); box.innerHTML='';
     cards.forEach((c,i)=>{
@@ -861,10 +933,10 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
   function rpUnit(v){
     if(v==null||!isFinite(v)) return {txt:'—',unit:''};
     const a=Math.abs(v);
-    if(a>=1e9) return {txt:'Rp '+(v/1e9).toLocaleString('id-ID',{maximumFractionDigits:1}),unit:'M'};
-    if(a>=1e6) return {txt:'Rp '+(v/1e6).toLocaleString('id-ID',{maximumFractionDigits:1}),unit:'jt'};
-    if(a>=1e3) return {txt:'Rp '+(v/1e3).toLocaleString('id-ID',{maximumFractionDigits:0}),unit:'rb'};
-    return {txt:'Rp '+Math.round(v).toLocaleString('id-ID'),unit:''};
+    if(a>=1e9) return {txt:''+(v/1e9).toLocaleString('en-US',{maximumFractionDigits:1}),unit:'B'};
+    if(a>=1e6) return {txt:''+(v/1e6).toLocaleString('en-US',{maximumFractionDigits:1}),unit:'M'};
+    if(a>=1e3) return {txt:''+(v/1e3).toLocaleString('en-US',{maximumFractionDigits:0}),unit:'K'};
+    return {txt:''+Math.round(v).toLocaleString('en-US'),unit:''};
   }
 
   /* =========================================================
@@ -923,7 +995,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
         '<div class="st-top"><span class="st-name"><span class="sw" style="background:'+(isLeak?'var(--coral)':'linear-gradient(135deg,#34e3ad,#0a6e54)')+'"></span>'+s.name+'</span>'+
         '<span class="st-val">'+fmtInt(s.val)+'</span></div>'+
         '<div class="st-bar"><i style="width:'+widthPct+'%"></i></div>'+
-        (ret!=null?'<div class="st-drop">'+(isLeak?'⚠ ':'')+'Lolos '+fmtPct(ret)+' dari tahap sebelumnya'+(isLeak?' · titik bocor':'')+'</div>':'<div class="st-drop">Puncak funnel</div>');
+        (ret!=null?'<div class="st-drop">'+(isLeak?'⚠ ':'')+'Passed '+fmtPct(ret)+' from previous stage'+(isLeak?' · leak point':'')+'</div>':'<div class="st-drop">Funnel top</div>');
       list.appendChild(row);
     });
 
@@ -933,10 +1005,10 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
       ins.style.display='flex';
       ins.innerHTML=
         '<div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>'+
-        '<div><b>Kebocoran terbesar: '+leak.label+' ('+fmtPct(leak.ret)+' lolos).</b>'+
+        '<div><b>Biggest leak: '+leak.label+' ('+fmtPct(leak.ret)+' pass-through).</b>'+
         '<p>'+leak.bench.why+'</p>'+
-        '<span class="bench">Benchmark sehat untuk langkah ini ~'+(leak.bench.lo*100)+'–'+(leak.bench.hi*100)+'%. '+
-        '<span class="tag">[ASUMSI]</span> benchmark industri illustratif — perlu konfirmasi dengan data historis Anda.</span></div>';
+        '<span class="bench">A healthy benchmark for this step is ~'+(leak.bench.lo*100)+'–'+(leak.bench.hi*100)+'%. '+
+        '<span class="tag">[ASSUMPTION]</span> illustrative industry benchmark — verify against your own historical data.</span></div>';
     }else{ ins.style.display='none'; }
   }
   function applyFunnelTransform(){
@@ -1027,8 +1099,8 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
       mk.setAttribute('cx',cx); mk.setAttribute('cy',cy); mk.style.opacity=1;
       const roas=d.biaya? d.pend/d.biaya:null;
       tip.innerHTML='<div class="tt-h">'+d.tanggal+'</div>'+
-        '<div class="tt-r"><span class="k">Pendapatan</span><span class="v">'+fmtRpFull(d.pend)+'</span></div>'+
-        '<div class="tt-r"><span class="k">Biaya</span><span class="v">'+fmtRpFull(d.biaya)+'</span></div>'+
+        '<div class="tt-r"><span class="k">Revenue</span><span class="v">'+fmtRpFull(d.pend)+'</span></div>'+
+        '<div class="tt-r"><span class="k">Cost</span><span class="v">'+fmtRpFull(d.biaya)+'</span></div>'+
         '<div class="tt-r"><span class="k">ROAS</span><span class="v">'+fmtX(roas)+'</span></div>';
       tip.classList.add('on');
       const left=(cx/m.W)*r.width;
@@ -1041,7 +1113,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
   }
 
   /* =========================================================
-     11) RENDER — CHART ROAS PER KANAL (SVG bar horizontal)
+     11) RENDER — CHART ROAS BY CHANNEL (SVG bar horizontal)
      ========================================================= */
   function renderROAS(arr){
     const svg=document.getElementById('roasChart');
@@ -1083,9 +1155,9 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
         const d=arr[+rect.dataset.i];
         tip.innerHTML='<div class="tt-h">'+d.kanal+'</div>'+
           '<div class="tt-r"><span class="k">ROAS</span><span class="v">'+fmtX(d.roas)+'</span></div>'+
-          '<div class="tt-r"><span class="k">Pendapatan</span><span class="v">'+fmtRpFull(d.pend)+'</span></div>'+
-          '<div class="tt-r"><span class="k">Biaya</span><span class="v">'+fmtRpFull(d.biaya)+'</span></div>'+
-          '<div class="tt-r"><span class="k">Konversi</span><span class="v">'+fmtInt(d.konv)+'</span></div>';
+          '<div class="tt-r"><span class="k">Revenue</span><span class="v">'+fmtRpFull(d.pend)+'</span></div>'+
+          '<div class="tt-r"><span class="k">Cost</span><span class="v">'+fmtRpFull(d.biaya)+'</span></div>'+
+          '<div class="tt-r"><span class="k">Conversions</span><span class="v">'+fmtInt(d.konv)+'</span></div>';
         tip.classList.add('on');
       });
       rect.addEventListener('pointermove',e=>{
@@ -1127,10 +1199,15 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
     document.getElementById('dash').classList.add('show');
     document.getElementById('dashTools').style.display='flex';
     const pill=document.getElementById('srcPill'); pill.style.display='inline-flex';
-    if(state.source==='sample'){ pill.classList.remove('live'); document.getElementById('srcText').textContent='DATA CONTOH · '+rows.length+' baris'; }
-    else if(state.source==='manual'){ pill.classList.add('live'); document.getElementById('srcText').textContent='DATA MANUAL · '+rows.length+' kanal'; }
-    else { pill.classList.add('live'); document.getElementById('srcText').textContent=(state.filename||'Data Anda')+' · '+rows.length+' baris'; }
-    document.getElementById('storeMode').textContent = state.persist ? 'IndexedDB (lokal)' : 'Sementara (sesi ini)';
+    if(state.source==='sample'){ pill.classList.remove('live'); document.getElementById('srcText').textContent='SAMPLE DATA · '+rows.length+' rows'; }
+    else if(state.source==='manual'){ pill.classList.add('live'); document.getElementById('srcText').textContent='MANUAL DATA · '+rows.length+' channels'; }
+    else { pill.classList.add('live'); document.getElementById('srcText').textContent=(state.filename||'Your data')+' · '+rows.length+' rows'; }
+    document.getElementById('storeMode').textContent = state.persist ? 'IndexedDB (local)' : 'Temporary (this session)';
+    const openIt=(state.currentReportId&&reportsCache)? reportsCache.items.find(x=>x.id===state.currentReportId) : null;
+    if(openIt){ pill.classList.add('live'); document.getElementById('srcText').textContent='★ '+openIt.name; }
+    const ph=document.getElementById('printTitle'); if(ph) ph.textContent = openIt ? openIt.name : (state.filename||'Marketing report');
+    const pd=document.getElementById('printDate'); if(pd) pd.textContent = new Date().toLocaleDateString('en-US',{day:'numeric',month:'long',year:'numeric'});
+    renderTrackCard();
     window.scrollTo({top:0, behavior:RM?'auto':'smooth'});
   }
 
@@ -1154,6 +1231,14 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
       const tx=db.transaction(this.store,'readonly'); const r=tx.objectStore(this.store).get('current');
       r.onsuccess=()=>res(r.result||null); r.onerror=()=>rej(r.error);
     });},
+    async saveAt(key,obj){ const db=await this.open(); return new Promise((res,rej)=>{
+      const tx=db.transaction(this.store,'readwrite'); tx.objectStore(this.store).put(obj,key);
+      tx.oncomplete=()=>res(true); tx.onerror=()=>rej(tx.error);
+    });},
+    async loadAt(key){ const db=await this.open(); return new Promise((res,rej)=>{
+      const tx=db.transaction(this.store,'readonly'); const r=tx.objectStore(this.store).get(key);
+      r.onsuccess=()=>res(r.result||null); r.onerror=()=>rej(r.error);
+    });},
     async clear(){ try{ const db=await this.open(); return new Promise((res)=>{
       const tx=db.transaction(this.store,'readwrite'); tx.objectStore(this.store).delete('current');
       tx.oncomplete=()=>res(true); tx.onerror=()=>res(false);
@@ -1173,7 +1258,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
     state.rows=rows; state.source=source; state.filename=filename||null;
     renderAll();
     await persistDataset();
-    if(!state.persist) document.getElementById('storeMode').textContent='Sementara (sesi ini)';
+    if(!state.persist) document.getElementById('storeMode').textContent='Temporary (this session)';
   }
   function handleFile(file){
     if(!file) return;
@@ -1182,9 +1267,9 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
       try{
         const rows=buildRows(parseCSV(String(rd.result)));
         await loadFromRows(rows,'upload',file.name);
-      }catch(err){ toast('Gagal membaca file: '+err.message); }
+      }catch(err){ toast("Couldn't read file: "+err.message); }
     };
-    rd.onerror=()=>toast('Tidak bisa membuka file.');
+    rd.onerror=()=>toast("Couldn't open the file.");
     rd.readAsText(file);
   }
 
@@ -1217,15 +1302,15 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
   function buildManualPanel(p){
     manualFunnelOn=false;
     p.innerHTML =
-      '<p class="manual-help">Isi minimal <b>Biaya</b> &amp; <b>Pendapatan</b> per kanal. Kolom lain opsional — untuk funnel. Semua tetap diproses di browser ini.</p>'+
+      '<p class="manual-help">Enter at least <b>Cost</b> &amp; <b>Revenue</b> per channel. Other columns are optional — for the funnel. Everything is still processed in this browser.</p>'+
       '<div class="m-scroll"><table class="m-table" id="mTable"><thead><tr>'+
-        '<th>Kanal</th><th>Biaya (Rp)</th><th>Pendapatan (Rp)</th>'+
-        '<th class="fcol">Impresi</th><th class="fcol">Klik</th><th class="fcol">Lead</th><th class="fcol">Konversi</th><th></th>'+
+        '<th>Channel</th><th>Cost</th><th>Revenue</th>'+
+        '<th class="fcol">Impressions</th><th class="fcol">Clicks</th><th class="fcol">Leads</th><th class="fcol">Conversions</th><th></th>'+
       '</tr></thead><tbody id="mBody"></tbody></table></div>'+
       '<div class="m-actions">'+
-        '<button class="m-link" id="mAddRow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Tambah kanal</button>'+
-        '<button class="m-link muted" id="mToggleFunnel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>Tambah kolom funnel</button>'+
-        '<button class="btn jade m-go" id="mGo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Lihat dashboard</button>'+
+        '<button class="m-link" id="mAddRow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add channel</button>'+
+        '<button class="m-link muted" id="mToggleFunnel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>Add funnel columns</button>'+
+        '<button class="btn jade m-go" id="mGo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>View dashboard</button>'+
       '</div>';
     const body=p.querySelector('#mBody');
     ['Meta','Google Ads','Shopee'].forEach(n=>addManualRow(body,n));
@@ -1236,7 +1321,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
   function addManualRow(body, kanal){
     const tr=document.createElement('tr');
     tr.innerHTML =
-      '<td><input class="m-input k" data-f="kanal" placeholder="Nama kanal"></td>'+
+      '<td><input class="m-input k" data-f="kanal" placeholder="Channel name"></td>'+
       '<td><input class="m-input n" data-f="biaya" inputmode="numeric" placeholder="0"></td>'+
       '<td><input class="m-input n" data-f="pendapatan" inputmode="numeric" placeholder="0"></td>'+
       '<td class="fcol"><input class="m-input n" data-f="impresi" inputmode="numeric" placeholder="0"></td>'+
@@ -1253,7 +1338,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
     document.getElementById('mTable').classList.toggle('funnel-on', manualFunnelOn);
     const btn=document.getElementById('mToggleFunnel');
     btn.classList.toggle('muted', !manualFunnelOn);
-    btn.lastChild.textContent = manualFunnelOn ? 'Sembunyikan kolom funnel' : 'Tambah kolom funnel';
+    btn.lastChild.textContent = manualFunnelOn ? 'Hide funnel columns' : 'Add funnel columns';
   }
   function submitManual(){
     const rows=[];
@@ -1263,13 +1348,100 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
       const biaya=num(get('biaya')), pendapatan=num(get('pendapatan'));
       const impresi=num(get('impresi')), klik=num(get('klik')), lead=num(get('lead')), konversi=num(get('konversi'));
       if(!kanal && !biaya && !pendapatan && !impresi && !klik && !lead && !konversi) return;
-      rows.push({ tanggal:'', kanal:kanal||'Tanpa kanal', biaya, impresi, klik, lead, konversi, pendapatan });
+      rows.push({ tanggal:'', kanal:kanal||'Unnamed channel', biaya, impresi, klik, lead, konversi, pendapatan });
     });
     if(!rows.length || !rows.some(r=>r.biaya>0 || r.pendapatan>0)){
-      toast('Isi minimal satu kanal dengan biaya atau pendapatan.');
+      toast('Enter at least one channel with cost or revenue.');
       return;
     }
-    loadFromRows(rows,'manual',null).catch(e=>toast('Gagal memuat: '+e.message));
+    loadFromRows(rows,'manual',null).catch(e=>toast('Failed to load: '+e.message));
+  }
+
+  /* =========================================================
+     15c) PRO FASE 1 — Simpan laporan · Lacak waktu · PDF
+     (client-side; gerbang berbayar menyusul saat auth dipasang)
+     ========================================================= */
+  let reportsCache=null;
+  function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function uid(){ return 'r'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+  function kpiSnap(rows){ const t=computeTotals(rows); return {ts:Date.now(), k:{roas:t.roas,pend:t.pend,biaya:t.biaya,cac:t.cac,konv:t.konv,cvr:t.cvr}}; }
+  async function getReports(){
+    if(reportsCache) return reportsCache;
+    try{ const r=await DB.loadAt('reports'); reportsCache=(r&&Array.isArray(r.items))?r:{items:[]}; }
+    catch(e){ reportsCache={items:[]}; }
+    return reportsCache;
+  }
+  async function saveReports(){ try{ await DB.saveAt('reports', reportsCache||{items:[]}); }catch(e){/* storage diblokir → in-memory */} }
+
+  async function saveCurrentReport(){
+    if(!state.rows.length){ toast('Nothing to save yet.'); return; }
+    const reps=await getReports();
+    if(state.currentReportId){
+      const it=reps.items.find(x=>x.id===state.currentReportId);
+      if(it){ it.rows=state.rows; it.source=state.source; it.filename=state.filename; it.savedAt=Date.now(); it.snapshots.push(kpiSnap(state.rows)); await saveReports(); toast('“'+it.name+'” updated — snapshot added.'); renderAll(); return; }
+    }
+    let name=(typeof prompt==='function') ? prompt('Name this report:', state.filename || 'My report') : 'My report';
+    name=String(name||'').trim(); if(!name) return;
+    const item={ id:uid(), name, savedAt:Date.now(), rows:state.rows, source:state.source, filename:state.filename, snapshots:[kpiSnap(state.rows)] };
+    reps.items.unshift(item); state.currentReportId=item.id; await saveReports();
+    toast('Saved as “'+name+'”.'); renderAll();
+  }
+  async function openReport(id){
+    const reps=await getReports(); const it=reps.items.find(x=>x.id===id); if(!it) return;
+    state.rows=it.rows; state.source=it.source||'upload'; state.filename=it.filename||it.name; state.currentReportId=it.id;
+    closeReports(); renderAll();
+  }
+  async function deleteReport(id){
+    const reps=await getReports(); reps.items=reps.items.filter(x=>x.id!==id);
+    if(state.currentReportId===id) state.currentReportId=null;
+    await saveReports(); renderReportsList(); renderAll();
+  }
+  function openReports(){ getReports().then(()=>{ renderReportsList(); document.getElementById('reportsDrawer').classList.add('open'); }); }
+  function closeReports(){ document.getElementById('reportsDrawer').classList.remove('open'); }
+  function renderReportsList(){
+    const wrap=document.getElementById('reportsList'); const reps=reportsCache||{items:[]};
+    if(!reps.items.length){ wrap.innerHTML='<div class="rep-empty">No saved reports yet.<br>Analyze some data, then tap <b style="color:var(--jade)">Save</b>.</div>'; return; }
+    wrap.innerHTML=reps.items.map(it=>{
+      const last=it.snapshots[it.snapshots.length-1]; const roas=(last&&last.k.roas!=null)?last.k.roas.toFixed(2)+'×':'—';
+      const d=new Date(it.savedAt).toLocaleDateString('en-US',{day:'numeric',month:'short',year:'numeric'});
+      const open=state.currentReportId===it.id;
+      return '<div class="rep-item"><div class="nm">'+esc(it.name)+(open?' · <span style="color:var(--jade);font-size:12px;font-weight:600">open</span>':'')+'</div>'+
+        '<div class="meta"><span>ROAS <b>'+roas+'</b></span><span>'+it.snapshots.length+' snapshot'+(it.snapshots.length>1?'s':'')+'</span><span>'+d+'</span></div>'+
+        '<div class="acts"><button class="btn jade" data-act="open" data-id="'+it.id+'">Open</button><button class="btn ghost" data-act="del" data-id="'+it.id+'">Delete</button></div></div>';
+    }).join('');
+  }
+  function sparkline(vals,w,h){
+    const n=vals.length; if(n<2) return '';
+    const max=Math.max(...vals), min=Math.min(...vals), pad=6;
+    const x=i=>pad+(i*(w-2*pad)/(n-1));
+    const y=v=>{ const t=(max-min)?(v-min)/(max-min):.5; return h-pad-t*(h-2*pad); };
+    let d='M'+x(0).toFixed(1)+' '+y(vals[0]).toFixed(1);
+    for(let i=1;i<n;i++) d+=' L'+x(i).toFixed(1)+' '+y(vals[i]).toFixed(1);
+    return '<path d="'+d+'" fill="none" stroke="var(--jade)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'+
+           '<circle cx="'+x(n-1).toFixed(1)+'" cy="'+y(vals[n-1]).toFixed(1)+'" r="3" fill="var(--jade)"/>';
+  }
+  function renderTrackCard(){
+    const card=document.getElementById('trackCard'); if(!card) return;
+    const it=(state.currentReportId&&reportsCache)? reportsCache.items.find(x=>x.id===state.currentReportId) : null;
+    if(!it){ card.style.display='none'; return; }
+    card.style.display='block';
+    const s=it.snapshots||[];
+    const head='<div class="track-head"><h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg>Track over time — '+esc(it.name)+'</h4><span class="cnt">'+s.length+' snapshot'+(s.length>1?'s':'')+'</span></div>';
+    if(s.length<2){
+      card.innerHTML=head+'<div class="track-hint">Update this report with next week\u2019s numbers (<b>Change data</b> \u2192 <b>Save</b>) to start tracking how your ROAS, revenue and cost move over time.</div>';
+      return;
+    }
+    const roasVals=s.map(x=>x.k.roas==null?0:x.k.roas);
+    const fmtRoas=v=>v==null?'—':v.toFixed(2)+'×';
+    const dnum=t=>new Date(t).toLocaleDateString('en-US',{day:'numeric',month:'short'});
+    let rows='';
+    for(let i=s.length-1;i>=0;i--){
+      const cur=s[i].k, prev=i>0?s[i-1].k:null;
+      const dR=(prev&&prev.roas&&cur.roas!=null)?(cur.roas-prev.roas)/Math.abs(prev.roas):null;
+      const dCell=dR==null?'<td>—</td>':'<td class="'+(dR>=0?'up':'down')+'">'+(dR>=0?'▲':'▼')+' '+Math.abs(dR*100).toFixed(0)+'%</td>';
+      rows+='<tr><td>'+dnum(s[i].ts)+'</td><td>'+fmtRoas(cur.roas)+'</td>'+dCell+'<td>'+fmtIntShort(cur.pend)+'</td><td>'+fmtIntShort(cur.biaya)+'</td></tr>';
+    }
+    card.innerHTML=head+'<div class="track-grid"><table class="track-tbl"><thead><tr><th>Date</th><th>ROAS</th><th>Δ</th><th>Revenue</th><th>Cost</th></tr></thead><tbody>'+rows+'</tbody></table><svg class="spark" viewBox="0 0 150 54" aria-hidden="true">'+sparkline(roasVals,150,54)+'</svg></div>';
   }
 
   /* =========================================================
@@ -1288,9 +1460,21 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
     document.getElementById('btnSample').addEventListener('click',()=>loadFromRows(sampleData(),'sample',null));
     document.getElementById('btnManual').addEventListener('click',showManual);
     document.getElementById('btnUpload').addEventListener('click',()=>fileInput.click());
+    document.getElementById('btnSaveReport').addEventListener('click',saveCurrentReport);
+    document.getElementById('btnReports').addEventListener('click',openReports);
+    document.getElementById('btnPDF').addEventListener('click',()=>{ renderAll(); setTimeout(()=>window.print(),60); });
+    document.getElementById('reportsClose').addEventListener('click',closeReports);
+    document.getElementById('reportsBackdrop').addEventListener('click',closeReports);
+    document.getElementById('reportsList').addEventListener('click',e=>{
+      const b=e.target.closest('[data-act]'); if(!b) return;
+      const id=b.getAttribute('data-id');
+      if(b.getAttribute('data-act')==='open') openReport(id);
+      else if(confirm('Delete this report and its history?')) deleteReport(id);
+    });
     document.getElementById('btnClear').addEventListener('click',async ()=>{
       await DB.clear();
-      state.rows=[]; state.source=null; state.filename=null;
+      state.rows=[]; state.source=null; state.filename=null; state.currentReportId=null;
+      closeReports();
       document.getElementById('dash').classList.remove('show');
       document.getElementById('dashTools').style.display='none';
       document.getElementById('srcPill').style.display='none';
@@ -1310,6 +1494,8 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
      ========================================================= */
   async function init(){
     wire();
+    state.currentReportId=null;
+    await getReports();
     try{
       const saved=await DB.load();
       if(saved && saved.rows && saved.rows.length){

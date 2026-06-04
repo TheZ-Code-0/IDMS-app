@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="dark" />
-<title>IDMS — Datamu, milikmu. Analitik marketing local-first.</title>
-<meta name="description" content="Dasbor marketing yang menghitung semuanya di dalam browser Anda — funnel, tren, ROAS per kanal. Tak satu byte pun dikirim ke server kami." />
+<title>Vaultics — Your data, yours alone. Local-first marketing analytics.</title>
+<meta name="description" content="A marketing dashboard that computes everything inside your browser — funnels, trends, channel ROAS. Not a single byte of your data reaches our servers." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -201,6 +201,10 @@ footer{border-top:1px solid var(--line);padding:38px 0 56px;margin-top:30px}
 .foot-brand h1{font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--ink-hi);margin:0}
 .foot-brand .tg{font-style:italic;font-family:var(--font-display);color:var(--jade);font-size:14px}
 .foot-note{max-width:62ch;color:var(--ink-lo);font-size:12.5px;line-height:1.7}
+.foot-cols{display:flex;gap:46px;flex-wrap:wrap}
+.foot-cols .col h5{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-mid);margin:0 0 12px;font-weight:600}
+.foot-cols .col a{display:block;color:var(--ink);font-size:13.5px;margin-bottom:8px;transition:color .2s}
+.foot-cols .col a:hover{color:var(--jade)}
 
 /* reveal */
 .ru{opacity:0;transform:translateY(22px)}
@@ -235,15 +239,15 @@ footer{border-top:1px solid var(--line);padding:38px 0 56px;margin-top:30px}
   <div class="nav-in">
     <a class="brand" href="index.html" style="color:inherit">
       <div class="gem" aria-hidden="true"></div>
-      <div><h1>IDMS</h1><div class="sub">Local-First</div></div>
+      <div><h1>Vaultics</h1><div class="sub">Local-First</div></div>
     </a>
     <div class="nav-links">
-      <a href="#cara">Cara kerja</a>
-      <a href="#bukti">Bukti</a>
-      <a href="#fitur">Fitur</a>
-      <a href="#harga">Harga</a>
+      <a href="#how">How it works</a>
+      <a href="#proof">Proof</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
     </div>
-    <a class="btn jade sm" href="app.html">Mulai gratis</a>
+    <a class="btn jade sm" href="app.html">Start for free</a>
   </div>
 </nav>
 
@@ -252,39 +256,39 @@ footer{border-top:1px solid var(--line);padding:38px 0 56px;margin-top:30px}
   <!-- HERO -->
   <header class="hero">
     <div>
-      <p class="eyebrow ru" style="--d:40ms"><span class="dot"></span>Analitik marketing · local-first</p>
-      <h2 class="h ru" style="--d:120ms">Datamu,<br><em>tetap milikmu.</em></h2>
-      <p class="lede ru" style="--d:230ms">Dasbor marketing yang menghitung semuanya di dalam browser Anda — funnel, tren, ROAS per kanal. Tak satu byte pun data dikirim ke server kami.</p>
+      <p class="eyebrow ru" style="--d:40ms"><span class="dot"></span>Marketing analytics · local-first</p>
+      <h2 class="h ru" style="--d:120ms">Your data,<br><em>yours alone.</em></h2>
+      <p class="lede ru" style="--d:230ms">Vaultics turns your campaign exports into funnels, trends, and channel ROAS — computed entirely inside your browser. Not a single byte of your data reaches our servers.</p>
       <div class="hero-cta ru" style="--d:330ms">
         <a class="btn jade" href="app.html">
-          Mulai gratis
+          Start for free
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn" href="#cara">Lihat caranya</a>
+        <a class="btn" href="#how">See how it works</a>
       </div>
       <div class="trust ru" style="--d:430ms">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
-        Tanpa kartu kredit · langsung di browser · data tak pernah keluar
+        No account · runs in your browser · your data never leaves
       </div>
     </div>
 
     <div class="ru" style="--d:360ms">
-      <div class="mock" role="img" aria-label="Pratinjau dasbor IDMS dengan indikator nol permintaan jaringan keluar">
+      <div class="mock" role="img" aria-label="Preview of the Vaultics dashboard showing zero outbound network requests">
         <div class="mock-bar">
           <i></i><i></i><i></i>
           <span class="url">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-            idms · diproses lokal
+            vaultics · processed locally
           </span>
         </div>
         <div class="mock-body">
           <div class="mini-kpis">
             <div class="mini-kpi gold">
               <div class="l"><svg class="crown" width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l4 4 5-6 5 6 4-4v11H3z"/></svg>ROAS</div>
-              <div class="v">3,1×</div>
+              <div class="v">3.1×</div>
             </div>
-            <div class="mini-kpi"><div class="l">Pendapatan</div><div class="v">Rp544<span style="font-size:.55em;color:var(--ink-mid)"> jt</span></div></div>
-            <div class="mini-kpi"><div class="l">Konversi</div><div class="v">1.284</div></div>
+            <div class="mini-kpi"><div class="l">Revenue</div><div class="v">$38.2<span style="font-size:.55em;color:var(--ink-mid)">k</span></div></div>
+            <div class="mini-kpi"><div class="l">Conversions</div><div class="v">1,284</div></div>
           </div>
           <div class="mini-funnel">
             <div class="mf" style="width:100%"></div>
@@ -293,55 +297,55 @@ footer{border-top:1px solid var(--line);padding:38px 0 56px;margin-top:30px}
             <div class="mf" style="width:9%"></div>
           </div>
         </div>
-        <div class="net-badge"><span class="pulse"></span>Network · 0 permintaan keluar</div>
+        <div class="net-badge"><span class="pulse"></span>Network · 0 outbound requests</div>
       </div>
     </div>
   </header>
 
   <!-- CONTRAST -->
-  <section class="band" id="cara">
+  <section class="band" id="how">
     <div class="sec-head">
-      <p class="sec-eyebrow">Kenapa berbeda</p>
-      <h3 class="s ru">Alat lain menyimpan data Anda.<br>IDMS <em>tak pernah melihatnya.</em></h3>
-      <p class="ru">Bedanya bukan soal keamanan yang lebih canggih — tapi soal di mana datanya diproses.</p>
+      <p class="sec-eyebrow">Why it's different</p>
+      <h3 class="s ru">Every other tool keeps your data.<br>Vaultics <em>never sees it.</em></h3>
+      <p class="ru">The difference isn't fancier security — it's where your data gets processed.</p>
     </div>
     <div class="contrast">
       <div class="cside bad ru">
-        <div class="tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>SaaS biasa (cloud)</div>
-        <h4>Data Anda pindah ke server mereka</h4>
-        <p>Angka pendapatan, margin, dan pelanggan Anda dikirim lalu disimpan di server pihak lain. Sekali ada di sana, ia jadi target serangan dan beban tanggung jawab — milik mereka, bukan Anda.</p>
-        <div class="where">→ titik bocor + biaya server</div>
+        <div class="tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Typical SaaS (cloud)</div>
+        <h4>Your data moves to their servers</h4>
+        <p>Your revenue, margins, and customer numbers get sent to and stored on someone else's servers. Once it's there, it's a breach target and a liability — theirs to hold, not yours.</p>
+        <div class="where">→ a leak point + server costs</div>
       </div>
       <div class="cside good ru">
-        <div class="tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/></svg>IDMS (local-first)</div>
-        <h4>Data Anda tetap di perangkat Anda</h4>
-        <p>File diolah dan disimpan di browser Anda sendiri (IndexedDB). Kami tak menerima, tak menyimpan, dan tak bisa melihatnya — karena memang tak pernah dikirim ke mana pun.</p>
-        <div class="where">→ tak ada yang bisa kami bocorkan</div>
+        <div class="tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/></svg>Vaultics (local-first)</div>
+        <h4>Your data stays on your device</h4>
+        <p>Your files are processed and stored in your own browser (IndexedDB). We don't receive it, don't store it, and can't see it — because it never leaves your device.</p>
+        <div class="where">→ nothing for us to leak</div>
       </div>
     </div>
   </section>
 
   <!-- DEVTOOLS CHALLENGE -->
-  <section class="band" id="bukti">
+  <section class="band" id="proof">
     <div class="challenge ru">
       <div class="challenge-grid">
         <div class="challenge-copy">
-          <h3>Jangan percaya kami.<br><em>Buktikan sendiri.</em></h3>
-          <p>Buka DevTools browser, masuk ke tab Network, lalu unggah data Anda. Hitung berapa permintaan yang membawa data keluar dari perangkat Anda.</p>
-          <p>Jawabannya selalu sama:</p>
-          <p class="fine">Klaim yang bisa Anda verifikasi sendiri dalam 30 detik — bukan janji yang harus Anda percaya begitu saja.</p>
+          <h3>Don't trust us.<br><em>Verify us.</em></h3>
+          <p>Open your browser's DevTools, switch to the Network tab, then upload your data. Count the requests carrying your data off your device.</p>
+          <p>The answer is always the same:</p>
+          <p class="fine">A claim you can verify yourself in 30 seconds — not one you have to take on faith.</p>
         </div>
         <div class="console" aria-hidden="true">
-          <div class="row"><span class="c">›</span> unggah laporan_kampanye.csv</div>
-          <div class="row"><span class="muted"># diproses di browser…</span></div>
-          <div class="row"><span class="c">✓</span> 180 baris · funnel, tren, ROAS siap</div>
+          <div class="row"><span class="c">›</span> upload campaign_report.csv</div>
+          <div class="row"><span class="muted"># processed in your browser…</span></div>
+          <div class="row"><span class="c">✓</span> 180 rows · funnel, trends, ROAS ready</div>
           <div class="net">
-            <div class="h"><span>Network</span><span>membawa data keluar</span></div>
+            <div class="h"><span>Network</span><span>carrying data out</span></div>
             <div class="big">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>
               0
             </div>
-            <div class="sub">permintaan keluar yang berisi data analitik Anda</div>
+            <div class="sub">outbound requests containing your analytics data</div>
           </div>
         </div>
       </div>
@@ -349,90 +353,90 @@ footer{border-top:1px solid var(--line);padding:38px 0 56px;margin-top:30px}
   </section>
 
   <!-- FEATURES -->
-  <section class="band" id="fitur">
+  <section class="band" id="features">
     <div class="sec-head">
-      <p class="sec-eyebrow">Yang Anda lihat</p>
-      <h3 class="s ru">Setiap grafik <em>membayar tempatnya.</em></h3>
-      <p class="ru">Bukan dinding angka — tiap visual menjawab satu keputusan yang harus Anda ambil.</p>
+      <p class="sec-eyebrow">What you see</p>
+      <h3 class="s ru">Every chart <em>earns its place.</em></h3>
+      <p class="ru">Not a wall of numbers — each view answers one decision you have to make.</p>
     </div>
     <div class="features">
       <div class="feat ru">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></div>
-        <h4>KPI sekilas</h4>
-        <p>ROAS, CAC, conversion rate, pendapatan — kesehatan akuisisi dalam satu pandang, lengkap dengan delta vs periode sebelumnya.</p>
+        <h4>KPIs at a glance</h4>
+        <p>ROAS, CAC, conversion rate, and revenue — your acquisition health in a single view, with deltas against the previous period.</p>
       </div>
       <div class="feat ru">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg></div>
-        <h4>Funnel yang jujur</h4>
-        <p>Funnel 3D yang otomatis menandai tahap paling bocor relatif terhadap benchmark — jadi Anda tahu di mana harus benahi dulu.</p>
+        <h4>An honest funnel</h4>
+        <p>A 3D funnel that automatically flags the stage leaking most against healthy benchmarks — so you know exactly what to fix first.</p>
       </div>
       <div class="feat ru">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg></div>
-        <h4>Tren pendapatan vs biaya</h4>
-        <p>Lihat apakah pendapatan Anda tumbuh lebih cepat daripada belanja iklan — sebelum kebobolan terlanjur jauh.</p>
+        <h4>Revenue vs. spend</h4>
+        <p>See whether revenue is outpacing your ad spend over time — before the gap gets expensive.</p>
       </div>
       <div class="feat ru">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
-        <h4>ROAS per kanal</h4>
-        <p>Kanal mana yang layak di-scale, mana yang justru rugi (di bawah 1×). Yang juara ditandai emas, yang merugi ditandai jelas.</p>
+        <h4>ROAS by channel</h4>
+        <p>Which channels deserve more budget, and which are quietly losing money (below 1×). Winners marked gold, losers flagged clearly.</p>
       </div>
     </div>
   </section>
 
   <!-- PRIVACY (account vs data) -->
-  <section class="band" id="privasi">
+  <section class="band" id="privacy">
     <div class="privacy ru">
       <div class="shield"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
       <div>
-        <h3>Akun di server. Data di perangkat Anda.</h3>
-        <p>Kami jujur soal apa yang ada di mana. Untuk login dan langganan, kami menyimpan email dan status Anda — itu saja. Data analitik Anda tetap di browser dan tak pernah kami simpan.</p>
-        <p style="color:var(--ink-mid);font-size:14px">Kami tak pernah bilang "100% aman" — tak ada sistem yang begitu. Kami menyatakan yang bisa dibuktikan: data analitik Anda tak meninggalkan perangkat Anda.</p>
+        <h3>Account on our servers. Data on your device.</h3>
+        <p>We're honest about what lives where. For login and billing, we store your email and plan status — that's it. Your analytics data stays in your browser and is never stored by us.</p>
+        <p style="color:var(--ink-mid);font-size:14px">We'll never tell you we're "100% secure" — no system is. We state what's verifiable: your analytics data never leaves your device.</p>
         <div class="split">
-          <div class="chip acc"><div class="k">Di server kami</div><b>Email + status langganan</b><span>secukupnya untuk login & pembayaran</span></div>
-          <div class="chip dat"><div class="k">Di perangkat Anda</div><b>Seluruh data marketing</b><span>diproses & disimpan lokal (IndexedDB)</span></div>
+          <div class="chip acc"><div class="k">On our servers</div><b>Email + subscription status</b><span>just enough for login &amp; billing</span></div>
+          <div class="chip dat"><div class="k">On your device</div><b>All your marketing data</b><span>processed &amp; stored locally (IndexedDB)</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PRICING -->
-  <section class="band" id="harga">
+  <section class="band" id="pricing">
     <div class="sec-head">
-      <p class="sec-eyebrow">Harga</p>
-      <h3 class="s ru">Mulai gratis. <em>Tanpa kartu.</em></h3>
-      <p class="ru">Dasbor inti gratis untuk dipakai sekarang. Fitur premium menyusul saat sudah matang.</p>
+      <p class="sec-eyebrow">Pricing</p>
+      <h3 class="s ru">Start free. <em>The core stays free.</em></h3>
+      <p class="ru">No card to start. Premium arrives once it's genuinely ready.</p>
     </div>
     <div class="pricing">
       <div class="price free ru">
-        <div class="plan">Dasbor inti</div>
-        <div class="amt">Gratis<small> / selamanya</small></div>
+        <div class="plan">Core dashboard</div>
+        <div class="amt">Free<small> / forever</small></div>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>KPI, funnel 3D, tren, ROAS per kanal</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Data diproses & disimpan di perangkat Anda</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Tanpa akun, tanpa kartu kredit</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>KPIs, 3D funnel, trends, ROAS by channel</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Data processed &amp; stored on your device</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>No account, no credit card</li>
         </ul>
-        <a class="btn jade" href="app.html">Mulai sekarang</a>
+        <a class="btn jade" href="app.html">Start now</a>
       </div>
       <div class="price soon-plan ru">
-        <span class="soon">Segera</span>
+        <span class="soon">Coming soon</span>
         <div class="plan">Premium</div>
         <div class="amt" style="color:var(--ink-mid)">—</div>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Sync terenkripsi end-to-end (kami tetap tak bisa membacanya)</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Insight & rekomendasi berbantuan AI</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Kolaborasi tim</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>End-to-end encrypted sync (we still can't read it)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>AI insights &amp; recommendations</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Team collaboration</li>
         </ul>
-        <span class="btn" style="opacity:.6;cursor:default">Belum tersedia</span>
+        <span class="btn" style="opacity:.6;cursor:default">Not yet available</span>
       </div>
     </div>
   </section>
 
   <!-- FINAL CTA -->
   <section class="final">
-    <h3 class="ru">Mulai sekarang — <em>datanya tetap milik Anda.</em></h3>
+    <h3 class="ru">Start now — <em>your data stays yours.</em></h3>
     <div class="ru" style="display:flex;justify-content:center">
       <a class="btn jade" href="app.html">
-        Buka dasbor
+        Open the dashboard
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -441,13 +445,34 @@ footer{border-top:1px solid var(--line);padding:38px 0 56px;margin-top:30px}
 </div>
 
 <footer>
-  <div class="wrap foot-in">
-    <div>
-      <div class="foot-brand"><div class="gem" aria-hidden="true"></div><h1>IDMS</h1></div>
-      <div class="tg" style="margin-top:8px">Datamu, milikmu.</div>
+  <div class="wrap">
+    <div class="foot-in">
+      <div>
+        <div class="foot-brand"><div class="gem" aria-hidden="true"></div><h1>Vaultics</h1></div>
+        <div style="margin-top:9px;font-style:italic;font-family:var(--font-display);color:var(--jade);font-size:14.5px">Your data. Your vault. Yours alone.</div>
+      </div>
+      <div class="foot-cols">
+        <div class="col">
+          <h5>Product</h5>
+          <a href="#how">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+        </div>
+        <div class="col">
+          <h5>Legal</h5>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+        <div class="col">
+          <h5>Connect</h5>
+          <a href="#">X (Twitter)</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
     </div>
-    <p class="foot-note">
-      Prototipe Fase 0. Angka pada dasbor sepenuhnya bergantung pada data yang Anda unggah. Harga final, ketentuan layanan, serta kebijakan tool & platform akan diumumkan dan perlu diverifikasi terkini saat peluncuran. Data analitik Anda diproses di browser Anda dan tak pernah dikirim ke server kami.
+    <p class="foot-note" style="margin-top:30px">
+      Prototype · Phase 0. Dashboard figures depend entirely on the data you provide. Final pricing, terms of service, and tool/platform policies will be announced and should be verified at launch. Your analytics data is processed in your browser and never sent to our servers.
     </p>
   </div>
 </footer>
