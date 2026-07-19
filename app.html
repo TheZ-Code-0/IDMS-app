@@ -513,7 +513,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
             <span>clicks<small>klik</small></span>
             <span>leads<small>lead</small></span>
             <span>conversions<small>konversi</small></span>
-            <span>pendapatan<small>revenue</small></span>
+            <span>revenue<small>pendapatan</small></span>
           </div>
           <p>Example row: <code>2026-05-01, Google Ads, 175000, 5120, 248, 71, 9, 2520000</code></p>
         </div>
@@ -612,7 +612,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
         <h4>Privacy you can verify</h4>
         <p>The analytics data you upload is processed entirely on this device and stored locally in your browser — never sent to any server. Open the Network tab in DevTools and verify it yourself: no outbound requests while loading data.</p>
         <div class="meta" id="privacyMeta">
-          <span>Storage: <b id="storeMode">IndexedDB (lokal)</b></span>
+          <span>Storage: <b id="storeMode">IndexedDB (local)</b></span>
           <span>Server: <b>0 bytes</b></span>
           <span>Backend: <b>none</b></span>
         </div>
@@ -649,8 +649,20 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
   /* =========================================================
      2) CSV PARSER (tulis tangan, dukung kutip & koma)
      ========================================================= */
+  function detectDelimiter(text){
+    // Excel di Windows dgn region Indonesia export CSV pakai titik-koma (bukan koma),
+    // karena koma dipakai sbg pemisah desimal. Sniff baris pertama, pilih pemisah terbanyak.
+    const firstLine = text.split(/\r\n?|\n/,1)[0] || '';
+    let best=',', bestCount=-1;
+    for(const d of [',',';','\t']){
+      const count = firstLine.split(d).length - 1;
+      if(count>bestCount){ bestCount=count; best=d; }
+    }
+    return bestCount>0 ? best : ',';
+  }
   function parseCSV(text){
     text = text.replace(/^\uFEFF/, '').replace(/\r\n?/g,'\n');
+    const delim = detectDelimiter(text);
     const rows=[]; let row=[], field='', q=false;
     for(let i=0;i<text.length;i++){
       const c=text[i];
@@ -659,7 +671,7 @@ svg.chart{display:block;width:100%;height:auto;overflow:visible}
         else field+=c;
       }else{
         if(c==='"') q=true;
-        else if(c===','){ row.push(field); field=''; }
+        else if(c===delim){ row.push(field); field=''; }
         else if(c==='\n'){ row.push(field); rows.push(row); row=[]; field=''; }
         else field+=c;
       }
